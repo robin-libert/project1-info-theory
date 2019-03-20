@@ -7,6 +7,7 @@ Created on Tue Mar 12 10:35:03 2019
 
 import numpy as np
 import project_part1 as pp1
+import math
 
 sudoku = np.load("sudoku.npy")
 possibleValues = [1,2,3,4,5,6,7,8,9]
@@ -146,3 +147,8 @@ if __name__ == "__main__":
     
     """Question 17"""
     print("Question 17 : " + str(firstSquareToFill()))
+    
+    r = createRV(81)
+    print(r)
+    print(pp1.entropy(r))
+    print(4*((-0.25)*math.log2(0.25)))

@@ -61,7 +61,7 @@ def joint_entropy3(pDistrib1, pDistrib2, pDistrib3, joinDistribution):
 if __name__ == "__main__":
     X = [1/4,1/4,1/4,1/4]
     Y = [1/2,1/4,1/8,1/8]
-    W = [5/16,11/16]
+    W = [11/16,5/16]
     Z = [5/16,11/16]
 
     joinDistribution = [[1/8,1/16,1/16,1/4],
@@ -71,10 +71,24 @@ if __name__ == "__main__":
 
     joinDistributionWZ = [[0,5/16],
                           [11/16,0]]
+    
+    joinDistributionZW = [[0,11/16],
+                          [5/16,0]]
 
 
-    joinDistributionXW = [[3/16,3/16,3/16,3/16],
-                          [1/16,1/16,1/16,1/16]]
+    joinDistributionXW = [[1/8,1/8,1/16,0],
+                          [1/8,1/8,3/16,1/4]]
+    
+    joinDistributionWX = [[11/88,1/8],
+                          [11/88,1/8],
+                          [33/176,1/16],
+                          [11/44,0]]
+    
+    joinDistributionYW = [[3/8,1/8,1/16,1/8],
+                          [1/8,1/8,1/16,0]]
+    
+    joinDistributionYZ = [[1/8, 1/8, 1/16, 0],
+                          [1/8, 1/8, 3/16, 1/4]]
 
     joinDistributionXYW = [[[0,1/8], [1/16,0],[1/16,0],[1/4,0]],
                            [[1/16,0],[0,1/8],[1/16,0],[0,0]],
@@ -88,12 +102,12 @@ if __name__ == "__main__":
     
     print("2.   H(X,Y) = " + str(joint_entropy(X,Y,joinDistribution)))
     print("     H(X,W) = " + str(joint_entropy(X,W,joinDistributionXW)))#not the same
-    print("     H(Y,W) = to do")
+    print("     H(Y,W) = " + str(joint_entropy(X,W,joinDistributionYW)))
     print("     H(W,Z) = " + str(joint_entropy(W,Z,joinDistributionWZ)))
     
     print("3.   H(X|Y) = " + str(conditional_entropy(X, Y, joinDistribution)))
-    #print("     H(W|X) = " + str(conditional_entropy(W, X, joinDistributionXW)))
-    print("     H(Z|W) = " + str(conditional_entropy(Z, W, joinDistributionWZ)))
+    print("     H(W|X) = " + str(conditional_entropy(W, X, joinDistributionWX)))
+    print("     H(Z|W) = " + str(conditional_entropy(Z, W, joinDistributionZW)))
     print("     H(W|Z) = " + str(conditional_entropy(W, Z, joinDistributionWZ)))
     
     print("4.   H(X,Y|W) = " + str(None))
@@ -101,5 +115,5 @@ if __name__ == "__main__":
     
     print("5.   I(X;Y) = " + str(mutual_information(X,Y,joinDistribution)))
     print("     I(X;W) = " + str(mutual_information(X,W,joinDistributionXW)))
-    #print("     I(Y;Z) = " + str(mutual_information(y_z_joint_distribution)))
+    print("     I(Y;Z) = " + str(mutual_information(Y,Z,joinDistributionYZ)))
     print("     I(W;Z) = " + str(mutual_information(W,Z,joinDistributionWZ)))
